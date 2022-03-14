@@ -1,6 +1,10 @@
 import os
 
-from flask import Flask
+from flask import Flask, Blueprint
+from flaskr.api import api_bp
+
+
+
 
 
 def create_app(test_config=None):
@@ -24,9 +28,7 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # a simple page that says hello
-    @app.route('/hello')
-    def hello():
-        return 'Hello, World!'
+    
+    app.register_blueprint(api_bp)
 
     return app
